@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
 import {
@@ -31,7 +31,7 @@ import { useUserSessionContext } from "@/hooks/use-user-session-context";
 import { useServerAction } from "@/hooks/use-server-action";
 import { createGroup } from "@/actions/contacts";
 import { toast } from "sonner";
-import { User } from "@/types";
+import { UserLite } from "@/types";
 import { searchUsers } from "@/actions/user";
 
 const groupSchema = z.object({
@@ -42,7 +42,7 @@ const groupSchema = z.object({
 interface CreateGroupModalProperties {
   isOpen: boolean;
   onClose: () => void;
-  onSuccess: (gradient: number) => void;
+  onSuccess: (groupId: string) => void;
 }
 
 export const CreateGroupModal = ({
@@ -50,7 +50,7 @@ export const CreateGroupModal = ({
   onClose,
   onSuccess,
 }: CreateGroupModalProperties) => {
-  const [selectedMembers, setSelectedMembers] = useState<User[]>([]);
+  const [selectedMembers, setSelectedMembers] = useState<UserLite[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [commandOpen, setCommandOpen] = useState(false);
   const { user: currentUser } = useUserSessionContext();
@@ -86,7 +86,7 @@ export const CreateGroupModal = ({
     search?.(searchQuery);
   }, [search, searchQuery]);
 
-  const addMember = (user: User) => {
+  const addMember = (user: UserLite) => {
     if (!selectedMembers.some((member) => member?.id === user?.id)) {
       setSelectedMembers([...selectedMembers, user]);
     }
@@ -119,7 +119,7 @@ export const CreateGroupModal = ({
 
       // Redirect to the new group page
       if (onSuccess) {
-        onSuccess(groupId);
+        onSuccess(groupId?.id as string);
       }
     } catch (error) {
       toast.error(`Failed to create group: ${(error as Error).message}`);
