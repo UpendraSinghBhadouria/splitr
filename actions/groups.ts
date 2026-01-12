@@ -14,7 +14,11 @@ import {
   initializeLedger,
   netLedger,
 } from "@/helper";
-import { ExpenseWithSplitsNumber, SettlementWithNumberAmount } from "@/types";
+import {
+  ExpenseWithSplitsNumber,
+  SettlementWithNumberAmount,
+  UserLite,
+} from "@/types";
 
 export const getGroupExpenses = async ({ groupId }: { groupId: string }) => {
   const currentUser = await getCurrentUser();
@@ -60,9 +64,9 @@ export const getGroupExpenses = async ({ groupId }: { groupId: string }) => {
   // members
   const memberIds = group.members.map((m) => m.userId);
 
-  const users: User[] = await prisma.user.findMany({
+  const users: UserLite[] = await prisma.user.findMany({
     where: { id: { in: memberIds } },
-    select: { id: true, name: true, image: true },
+    select: { id: true, name: true, image: true, email: true },
   });
 
   const userMap = Object.fromEntries(users.map((user) => [user.id, user]));
