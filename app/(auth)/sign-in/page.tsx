@@ -25,6 +25,8 @@ import { useState } from "react";
 import { signIn, socialSignIn } from "@/actions";
 import { Loader2 } from "lucide-react";
 import { GitHubIcon, GoogleIcon } from "@/components/icons";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const signUpSchema = z.object({
   email: z.email({ message: "Please enter a valid email" }),
@@ -39,7 +41,7 @@ const signUpSchema = z.object({
 
 export default function SignInPage() {
   const [error, setError] = useState<string | null>(null);
-
+  const router = useRouter();
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -52,12 +54,13 @@ export default function SignInPage() {
     email,
     password,
   }: z.infer<typeof signUpSchema>) => {
-    try {
-      await signIn(email, password);
-    } catch (error) {
-      setError(`Sign in failed: ${(error as Error).message}`);
-    } finally {
-      form.reset();
+    const { success, message } = await signIn(email, password);
+    if (success) {
+      toast.success(message);
+      router.push("/dashboard");
+      router.refresh();
+    } else {
+      setError(message);
     }
   };
 

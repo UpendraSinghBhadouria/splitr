@@ -26,6 +26,8 @@ import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { GitHubIcon, GoogleIcon } from "@/components/icons";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const signUpSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -41,6 +43,7 @@ const signUpSchema = z.object({
 
 export default function SignUpPage() {
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -55,13 +58,13 @@ export default function SignUpPage() {
     password,
     name,
   }: z.infer<typeof signUpSchema>) => {
-    try {
-      await signUp(name, email, password);
-    } catch (error) {
-      console.error("Sign Up Error:", error);
-      setError(`Sign up failed. ${(error as Error).message}`);
-    } finally {
-      form.reset();
+    const { success, message } = await signUp(name, email, password);
+    if (success) {
+      toast.success(message);
+      router.push("/dashboard");
+      router.refresh();
+    } else {
+      setError(message);
     }
   };
 
@@ -185,7 +188,7 @@ export default function SignUpPage() {
               type="submit"
               className={cn(
                 "w-full bg-green-600 hover:bg-green-700 border-none text-white h-10",
-                isLoading && "opacity-70 cursor-not-allowed "
+                isLoading && "opacity-70 cursor-not-allowed ",
               )}
             >
               {isLoading ? (
