@@ -25,10 +25,10 @@ export const NetBalanceRow: React.FC<NetBalanceRowProps> = ({
     let color = "";
 
     if (isPositive) {
-      text = `They owe you $${amount}`;
+      text = `They owe you ₹${amount}`;
       color = "text-green-600";
     } else if (netBalance < 0) {
-      text = `You owe $${amount}`;
+      text = `You owe ₹${amount}`;
       color = "text-red-600";
     }
 
@@ -60,7 +60,9 @@ export const NetBalanceRow: React.FC<NetBalanceRowProps> = ({
           </>
         )}
       </p>
-      <span className={`text-xl font-bold ${amountColor}`}>${amount}</span>
+      <span className={`text-xl font-bold ${amountColor}`}>
+        &#8377;{amount}
+      </span>
     </div>
   );
 };

@@ -67,7 +67,7 @@ export const SettlementForm = ({
 
   // Single user settlement
   const handleUserSettlement = async (
-    data: z.infer<typeof settlementSchema>
+    data: z.infer<typeof settlementSchema>,
   ) => {
     const amount = parseFloat(data.amount);
 
@@ -101,7 +101,7 @@ export const SettlementForm = ({
   // Group settlement
   const handleGroupSettlement = async (
     data: z.infer<typeof settlementSchema>,
-    selectedUserId: string
+    selectedUserId: string,
   ) => {
     if (!selectedUserId) {
       toast.error("Please select a group member to settle with");
@@ -113,7 +113,7 @@ export const SettlementForm = ({
     try {
       // Get the selected user from the group balances
       const selectedUser = entityData.balances?.find(
-        (balance) => balance.userId === selectedUserId
+        (balance) => balance.userId === selectedUserId,
       );
 
       if (!selectedUser) {
@@ -218,7 +218,7 @@ export const SettlementForm = ({
         <div className="space-y-2">
           <Label htmlFor="amount">Amount</Label>
           <div className="relative">
-            <span className="absolute left-3 top-2.5">$</span>
+            <span className="absolute left-3 top-1.25">&#8377;</span>
             <Input
               id="amount"
               placeholder="0.00"
@@ -327,7 +327,7 @@ export const SettlementForm = ({
                         You paid{" "}
                         {
                           groupMembers?.find(
-                            (m) => m.userId === selectedGroupMemberId
+                            (m) => m.userId === selectedGroupMemberId,
                           )?.name
                         }
                       </span>
@@ -343,7 +343,7 @@ export const SettlementForm = ({
                         <AvatarImage
                           src={
                             groupMembers?.find(
-                              (m) => m.userId === selectedGroupMemberId
+                              (m) => m.userId === selectedGroupMemberId,
                             )?.image ?? ""
                           }
                         />
@@ -356,7 +356,7 @@ export const SettlementForm = ({
                       <span>
                         {
                           groupMembers?.find(
-                            (m) => m.userId === selectedGroupMemberId
+                            (m) => m.userId === selectedGroupMemberId,
                           )?.name
                         }{" "}
                         paid you
@@ -371,7 +371,7 @@ export const SettlementForm = ({
             <div className="space-y-2">
               <Label htmlFor="amount">Amount</Label>
               <div className="relative">
-                <span className="absolute left-3 top-2.5">$</span>
+                <span className="absolute left-3 top-2.5">&#8377;</span>
                 <Input
                   id="amount"
                   placeholder="0.00"

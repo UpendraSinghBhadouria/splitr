@@ -41,16 +41,16 @@ const DashboardPage = () => {
 
   const totalBalance = balances?.totalBalance ?? 0;
 
-  let amountText = "$0.00";
+  let amountText = "₹0.00";
   let amountClass = "";
   let statusText = "All settled up!";
 
   if (totalBalance > 0) {
-    amountText = `+$${totalBalance.toFixed(2)}`;
+    amountText = `₹${totalBalance.toFixed(2)}`;
     amountClass = "text-green-600";
     statusText = "You are owed money";
   } else if (totalBalance < 0) {
-    amountText = `-$${Math.abs(totalBalance).toFixed(2)}`;
+    amountText = `₹${Math.abs(totalBalance).toFixed(2)}`;
     amountClass = "text-red-600";
     statusText = "You owe money";
   }
@@ -100,7 +100,7 @@ const DashboardPage = () => {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-green-600">
-                  ${balances?.youAreOwed.toFixed(2)}
+                  &#8377;{balances?.youAreOwed.toFixed(2)}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
                   From {balances?.oweDetails?.youAreOwedBy?.length || 0} people
@@ -118,7 +118,7 @@ const DashboardPage = () => {
                 {(balances?.oweDetails?.youOwe?.length ?? 0) > 0 ? (
                   <>
                     <div className="text-2xl font-bold text-red-600">
-                      ${balances?.youOwe.toFixed(2)}
+                      &#8377;{balances?.youOwe.toFixed(2)}
                     </div>
                     <p className="text-xs text-muted-foreground mt-1">
                       To {balances?.oweDetails?.youOwe?.length || 0} people
@@ -126,7 +126,7 @@ const DashboardPage = () => {
                   </>
                 ) : (
                   <>
-                    <div className="text-2xl font-bold">$0.00</div>
+                    <div className="text-2xl font-bold">&#8377;0.00</div>
                     <p className="text-xs text-muted-foreground mt-1">
                       You don&apos;t owe anyone
                     </p>

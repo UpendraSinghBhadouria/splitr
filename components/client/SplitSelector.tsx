@@ -80,11 +80,11 @@ export const SplitSelector = ({
     // Calculate totals
     const newTotalAmount = newSplits.reduce(
       (sum, split) => sum + split.amount,
-      0
+      0,
     );
     const newTotalPercentage = newSplits.reduce(
       (sum, split) => sum + split.percentage,
-      0
+      0,
     );
 
     setTotalAmount(newTotalAmount);
@@ -115,11 +115,11 @@ export const SplitSelector = ({
     // Recalculate totals
     const newTotalAmount = updatedSplits.reduce(
       (sum, split) => sum + split.amount,
-      0
+      0,
     );
     const newTotalPercentage = updatedSplits.reduce(
       (sum, split) => sum + split.percentage,
-      0
+      0,
     );
 
     setTotalAmount(newTotalAmount);
@@ -152,11 +152,11 @@ export const SplitSelector = ({
     // Recalculate totals
     const newTotalAmount = updatedSplits.reduce(
       (sum, split) => sum + split.amount,
-      0
+      0,
     );
     const newTotalPercentage = updatedSplits.reduce(
       (sum, split) => sum + split.percentage,
-      0
+      0,
     );
 
     setTotalAmount(newTotalAmount);
@@ -191,7 +191,7 @@ export const SplitSelector = ({
 
           {type === "equal" && (
             <div className="text-right text-sm">
-              ${split.amount.toFixed(2)} ({split.percentage.toFixed(1)}%)
+              &#8377;{split.amount.toFixed(2)} ({split.percentage.toFixed(1)}%)
             </div>
           )}
 
@@ -216,13 +216,15 @@ export const SplitSelector = ({
                   onChange={(e) =>
                     updatePercentageSplit(
                       split.userId,
-                      parseFloat(e.target.value) || 0
+                      parseFloat(e.target.value) || 0,
                     )
                   }
                   className="w-16 h-8"
                 />
                 <span className="text-sm text-muted-foreground">%</span>
-                <span className="text-sm ml-1">${split.amount.toFixed(2)}</span>
+                <span className="text-sm ml-1">
+                  &#8377;{split.amount.toFixed(2)}
+                </span>
               </div>
             </div>
           )}
@@ -231,7 +233,7 @@ export const SplitSelector = ({
             <div className="flex items-center gap-2 flex-1">
               <div className="flex-1"></div>
               <div className="flex gap-1 items-center">
-                <span className="text-sm text-muted-foreground">$</span>
+                <span className="text-sm text-muted-foreground">&#8377;</span>
                 <Input
                   type="number"
                   min="0"
@@ -259,7 +261,7 @@ export const SplitSelector = ({
           <span
             className={`font-medium ${!isAmountValid ? "text-amber-600" : ""}`}
           >
-            ${totalAmount.toFixed(2)}
+            &#8377;{totalAmount.toFixed(2)}
           </span>
           {type !== "equal" && (
             <span
@@ -282,8 +284,8 @@ export const SplitSelector = ({
 
       {type === "exact" && !isAmountValid && (
         <div className="text-sm text-amber-600 mt-2">
-          The sum of all splits (${totalAmount.toFixed(2)}) should equal the
-          total amount (${amount.toFixed(2)}).
+          The sum of all splits (&#8377;{totalAmount.toFixed(2)}) should equal
+          the total amount (&#8377;{amount.toFixed(2)}).
         </div>
       )}
     </div>

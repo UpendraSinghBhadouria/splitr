@@ -20,7 +20,7 @@ const ContactsPage = () => {
   const shouldOpenCreateGroup = searchParams.get("createGroup") === "true";
 
   const [isCreateGroupModalOpen, setIsCreateGroupModalOpen] = useState(
-    shouldOpenCreateGroup
+    shouldOpenCreateGroup,
   );
 
   // Check for the createGroup parameter when the component mounts
@@ -70,16 +70,16 @@ const ContactsPage = () => {
                   <Card className="hover:bg-muted/30 transition-colors cursor-pointer">
                     <CardContent className="py-4">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 w-full">
                           <Avatar className="h-10 w-10">
                             <AvatarImage src={user?.image ?? ""} />
                             <AvatarFallback>
                               {user.name.charAt(0)}
                             </AvatarFallback>
                           </Avatar>
-                          <div>
+                          <div className="min-w-0">
                             <p className="font-medium">{user.name}</p>
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-sm text-muted-foreground truncate">
                               {user.email}
                             </p>
                           </div>

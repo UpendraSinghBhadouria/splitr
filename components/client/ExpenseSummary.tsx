@@ -60,13 +60,14 @@ export const ExpenseSummary = ({
           <div className="bg-muted rounded-lg p-4">
             <p className="text-sm text-muted-foreground">Total this month</p>
             <h3 className="text-2xl font-bold mt-1">
-              ${monthlySpending?.[currentMonth]?.total.toFixed(2) || "0.00"}
+              &#8377;
+              {monthlySpending?.[currentMonth]?.total.toFixed(2) || "0.00"}
             </h3>
           </div>
           <div className="bg-muted rounded-lg p-4">
             <p className="text-sm text-muted-foreground">Total this year</p>
             <h3 className="text-2xl font-bold mt-1">
-              ${totalSpent?.toFixed(2) || "0.00"}
+              &#8377;{totalSpent?.toFixed(2) || "0.00"}
             </h3>
           </div>
         </div>
@@ -79,7 +80,7 @@ export const ExpenseSummary = ({
               <YAxis />
               <Tooltip
                 formatter={(value) => [
-                  `$${(value as number)?.toFixed(2)}`,
+                  `₹${(value as number)?.toFixed(2)}`,
                   "Amount",
                 ]}
                 labelFormatter={() => "Spending"}

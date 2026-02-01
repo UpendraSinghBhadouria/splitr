@@ -74,7 +74,6 @@ export const getSettlementData = async ({
 }: SettlementDataInput) => {
   const me = await getCurrentUser();
 
-  console.log("@@parameters", { entityType, entityId });
   if (entityType === "user") {
     // Prisma Queries
     const other: UserLite | null = await prisma.user.findUnique({

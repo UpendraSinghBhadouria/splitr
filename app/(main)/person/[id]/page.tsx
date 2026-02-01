@@ -16,7 +16,7 @@ import { BarLoader } from "react-spinners";
 
 export const getBalanceStatus = (
   balance: number,
-  otherUserName?: string
+  otherUserName?: string,
 ): BalanceStatus => {
   if (balance === 0) {
     return {
@@ -131,7 +131,7 @@ const PersonExpensePage = () => {
             <div>{label}</div>
 
             <div className={amountClassName}>
-              ${Math.abs(balance).toFixed(2)}
+              &#8377;{Math.abs(balance).toFixed(2)}
             </div>
           </div>
         </CardContent>

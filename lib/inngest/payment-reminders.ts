@@ -17,9 +17,9 @@ export const paymentReminders = inngest.createFunction(
               (d) => `
                 <tr>
                   <td style="padding:4px 8px;">${d.name}</td>
-                  <td style="padding:4px 8px;">$${d.amount.toFixed(2)}</td>
+                  <td style="padding:4px 8px;">₹${d.amount.toFixed(2)}</td>
                 </tr>
-              `
+              `,
             )
             .join("");
 
@@ -51,7 +51,7 @@ export const paymentReminders = inngest.createFunction(
               error: (err as Error).message,
             };
           }
-        })
+        }),
       );
     });
 
@@ -60,5 +60,5 @@ export const paymentReminders = inngest.createFunction(
       successes: results.filter((r) => r.status === "success").length,
       failures: results.filter((r) => r.status === "failure").length,
     };
-  }
+  },
 );

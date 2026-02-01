@@ -31,7 +31,7 @@ export const GroupBalances = ({ balances }: GroupBalancesProperties) => {
   }
 
   const userMap = Object.fromEntries(
-    balances.map((balance) => [balance.id, balance])
+    balances.map((balance) => [balance.id, balance]),
   );
 
   // Who owes me?
@@ -89,7 +89,7 @@ export const GroupBalances = ({ balances }: GroupBalancesProperties) => {
                       <span className="text-sm">{member.name}</span>
                     </div>
                     <span className="font-medium text-green-600">
-                      ${member.amount.toFixed(2)}
+                      &#8377;{member.amount.toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -120,7 +120,7 @@ export const GroupBalances = ({ balances }: GroupBalancesProperties) => {
                       <span className="text-sm">{member.name}</span>
                     </div>
                     <span className="font-medium text-red-600">
-                      ${member.amount.toFixed(2)}
+                      &#8377;{member.amount.toFixed(2)}
                     </span>
                   </div>
                 ))}

@@ -77,7 +77,7 @@ export const ExpenseList = ({
   const handleDeleteExpense = async (expense: ExpenseWithSplitsNumber) => {
     // Use basic JavaScript confirm
     const confirmed = window.confirm(
-      "Are you sure you want to delete this expense? This action cannot be undone."
+      "Are you sure you want to delete this expense? This action cannot be undone.",
     );
 
     if (!confirmed) return;
@@ -133,7 +133,7 @@ export const ExpenseList = ({
                 <div className="flex items-center gap-2">
                   <div className="text-right">
                     <div className="font-medium">
-                      ${expense.amount.toFixed(2)}
+                      &#8377;{expense.amount.toFixed(2)}
                     </div>
                     {isGroupExpense ? (
                       <Badge variant="outline" className="mt-1">
@@ -192,7 +192,7 @@ export const ExpenseList = ({
                           </AvatarFallback>
                         </Avatar>
                         <span>
-                          {isCurrentUser ? "You" : splitUser.name}: $
+                          {isCurrentUser ? "You" : splitUser.name}: &#8377;
                           {split.amount.toFixed(2)}
                         </span>
                       </Badge>
