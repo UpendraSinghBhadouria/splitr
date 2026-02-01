@@ -9,6 +9,8 @@ From casual outings to long vacations, Splitr ensures everyone pays their fair s
 
 🌍 Live Website: https://splitr.upendradev.com
 
+<img width="1470" alt="Screenshot 2024-12-10 at 9 45 45 AM" src="screenshots\splitr.jpeg">
+
 ##  ✨ Features
 
 - Group expense tracking for trips, roommates, and events
